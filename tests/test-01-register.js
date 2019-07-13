@@ -5,6 +5,7 @@ var util = require('./util/misc');
 
 const {
   url,
+  testSuspendStudent,
   testTeacher,
   testTeacher2,
   testTeacher3,
@@ -63,7 +64,7 @@ describe('Register Students under Teacher', () => {
     'Register students under teacher #1',
     req1(testTeacher, ['customStudent@gmail.com', 'customStudent2@gmail.com', testStudentRegUnderTestTeacher])
   );
-  it('Register students under teacher #2', req1(testTeacher2, [testStudentRegUnderSecondTeacher]));
+  it('Register students under teacher #2', req1(testTeacher2, [testStudentRegUnderSecondTeacher, testSuspendStudent]));
   it('Register students under teacher #3', req1(testTeacher3, [notiStudentMentioned1, notiStudentMentioned2]));
   it('should fail if no teacher provided', req2);
   it('should fail if no students provided', req3);

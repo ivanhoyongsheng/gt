@@ -17,7 +17,6 @@ const commonstudents = async (req: CustomRequestQuery<IBody>, res: Response) => 
       return;
     }
     const result = await commonStudentsService.getStudentsOfTeacher(forceArray(teacher));
-    console.log(result);
     const students = (result as RowDataPacket[]).map((res) => res.email);
     res.send({ students });
   } catch (e) {

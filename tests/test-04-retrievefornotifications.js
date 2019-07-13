@@ -28,7 +28,6 @@ const req1 = (done) => {
       notification
     })
     .end((err, res) => {
-        console.log(res.body.recipients)
       res.should.have.status(200);
       res.body.should.be.a('object');
       res.body.should.have.key('recipients');
