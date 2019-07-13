@@ -3,18 +3,25 @@ var chaiHttp = require('chai-http');
 
 var util = require('./util/misc');
 
-const { url, testTeacher, testStudents } = util;
+const {
+  url,
+  testTeacher,
+  testTeacher2,
+  testStudents,
+  testStudentRegUnderTestTeacher,
+  testStudentRegUnderSecondTeacher
+} = util;
 
 chai.use(chaiHttp);
 chai.should();
 
-const req1 = (done) => {
+const req1 = (teacher, students) => (done) => {
   chai
     .request(url)
     .post('/register')
     .send({
-      teacher: testTeacher,
-      students: ['studentjon@gmail.com', 'studenthon@gmail.com']
+      teacher,
+      students
     })
     .end((err, res) => {
       res.should.have.status(204);
@@ -49,7 +56,11 @@ const req3 = (done) => {
 };
 
 describe('Register Students under Teacher', () => {
-  it('should return 204', req1);
+  it(
+    'Register students under teacher #1',
+    req1(testTeacher, ['studentjon@gmail.com', 'studenthon@gmail.com', testStudentRegUnderTestTeacher])
+  );
+  it('Register students under teacher #2', req1(testTeacher2, [testStudentRegUnderSecondTeacher]));
   it('should fail if no teacher provided', req2);
   it('should fail if no students provided', req3);
 });
