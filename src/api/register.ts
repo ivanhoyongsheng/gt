@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import RegisterService from 'service/register';
 import { CustomRequestBody } from 'types';
 import { errorMessageHandler } from 'lib/util';

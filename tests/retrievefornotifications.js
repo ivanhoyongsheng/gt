@@ -3,15 +3,23 @@ var chaiHttp = require('chai-http');
 
 var util = require('./util/misc');
 
-const { url, testTeacher, notiStudentMentioned1, notiStudentMentioned2, testStudentRegUnderTestTeacher } = util;
+const {
+  url,
+  testTeacher,
+  notiStudentMentioned1,
+  notiStudentMentioned2,
+  testStudentRegUnderTestTeacher,
+  testStudentRegUnderSecondTeacher,
+  testSuspendStudent
+} = util;
 
 chai.use(chaiHttp);
 chai.should();
 
-const apiUrl = 'retrievefornotifications';
+const apiUrl = '/retrievefornotifications';
 
 const req1 = (done) => {
-  const notification = `Hello students! @${notiStudentMentioned1} @${notiStudentMentioned2}`;
+  const notification = `Hello students! @${notiStudentMentioned1} @${notiStudentMentioned2} @${testSuspendStudent}`;
   chai
     .request(url)
     .post(apiUrl)
@@ -20,14 +28,16 @@ const req1 = (done) => {
       notification
     })
     .end((err, res) => {
+        console.log(res.body.recipients)
       res.should.have.status(200);
       res.body.should.be.a('object');
       res.body.should.have.key('recipients');
       res.body.recipients.should.be.a('array');
       res.body.recipients.should.include(notiStudentMentioned1, notiStudentMentioned2);
-      res.body.recipients.length.should.be(3)
+      res.body.recipients.should.have.lengthOf(5);
       res.body.recipients.should.include(testStudentRegUnderTestTeacher);
       res.body.recipients.should.not.include(testStudentRegUnderSecondTeacher);
+      res.body.recipients.should.not.include(testSuspendStudent);
       done();
     });
 };

@@ -7,9 +7,12 @@ const {
   url,
   testTeacher,
   testTeacher2,
+  testTeacher3,
   testStudents,
   testStudentRegUnderTestTeacher,
-  testStudentRegUnderSecondTeacher
+  testStudentRegUnderSecondTeacher,
+  notiStudentMentioned1,
+  notiStudentMentioned2
 } = util;
 
 chai.use(chaiHttp);
@@ -58,9 +61,10 @@ const req3 = (done) => {
 describe('Register Students under Teacher', () => {
   it(
     'Register students under teacher #1',
-    req1(testTeacher, ['studentjon@gmail.com', 'studenthon@gmail.com', testStudentRegUnderTestTeacher])
+    req1(testTeacher, ['customStudent@gmail.com', 'customStudent2@gmail.com', testStudentRegUnderTestTeacher])
   );
   it('Register students under teacher #2', req1(testTeacher2, [testStudentRegUnderSecondTeacher]));
+  it('Register students under teacher #3', req1(testTeacher3, [notiStudentMentioned1, notiStudentMentioned2]));
   it('should fail if no teacher provided', req2);
   it('should fail if no students provided', req3);
 });

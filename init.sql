@@ -18,9 +18,3 @@ CREATE TABLE students_teachers (
     PRIMARY KEY (student_email, teacher_email)
 );
 
-CREATE TABLE notifications (
-    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    teacher_email varchar(255) NOT NULL,
-    content varchar(255)
-)
-
