@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import RegisterService from 'service/register';
-import { CustomRequest } from 'types';
-import { errorMessageHandler, successMessageHandler } from 'lib/util';
+import { CustomRequestBody } from 'types';
+import { errorMessageHandler } from 'lib/util';
 
 const registerService = new RegisterService();
 
@@ -9,8 +9,7 @@ interface IBody {
   students: string[];
   teacher: string;
 }
-const register = async (req: CustomRequest<IBody>, res: Response) => {
-
+const register = async (req: CustomRequestBody<IBody>, res: Response) => {
   const { students, teacher } = req.body;
   try {
     if (!teacher) {

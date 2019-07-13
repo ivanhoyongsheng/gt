@@ -47,8 +47,20 @@ const req3 = (done) => {
     });
 };
 
+const req4 = (done) => {
+  chai
+    .request(url)
+    .post(apiUrl)
+    .send({ student: testSuspendStudent })
+    .end((err, res) => {
+      res.should.have.status(400);
+      done();
+    });
+};
+
 describe('Suspend specific student', () => {
   it('should return 204 if OK', req1);
   it('should fail if no matching student found', req2);
   it('should fail if no student provided', req3);
+  it('should warn if student already suspended', req4);
 });

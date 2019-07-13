@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-declare interface CustomRequest<T> extends Request {
+declare interface CustomRequestBody<T> extends Request {
   body: T
 }
 

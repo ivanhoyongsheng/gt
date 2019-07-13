@@ -19,3 +19,8 @@ export const successMessageHandler = (message?: string) => {
     message: `Success!${message ? ` ${message}` : ''}`
   };
 };
+export const warningMessageHandler = (message: string) => {
+  return {
+    message: `Warning: ${message}`
+  };
+};
