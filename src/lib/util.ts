@@ -10,7 +10,7 @@ export const stripNewLines = (str: string) => {
 
 export const errorMessageHandler = (message: string) => {
   return {
-    message: `Sorry, an error occured. Message: ${message}`
+    message: `Sorry, an error occured: ${message}`
   };
 };
 
