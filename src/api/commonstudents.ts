@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import CommonStudentsService from 'service/commonstudents';
 import { CustomRequestQuery } from 'types';
-import { errorMessageHandler, successMessageHandler } from 'lib/util';
+import { errorMessageHandler } from 'lib/util';
 import { RowDataPacket } from 'mysql2';
 
 const commonStudentsService = new CommonStudentsService();

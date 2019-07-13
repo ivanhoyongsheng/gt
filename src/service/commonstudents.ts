@@ -7,9 +7,12 @@ class CommonStudentsService {
   };
 
   get = async (teachers: string[]) => {
-    const qs = `SELECT * FROM students INNER JOIN students_teachers ON
+    const qs = `SELECT email FROM students INNER JOIN students_teachers ON
     students_teachers.student_email = students.email WHERE teacher_email IN
-    ${this.parseTeachers(teachers)}`;
+    ${this.parseTeachers(teachers)}
+    GROUP BY students.email
+    HAVING count(email) >= ${teachers.length}
+    `;
     const res = await sql.query(qs);
     return res[0];
   };
