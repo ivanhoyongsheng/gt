@@ -89,13 +89,19 @@ const req5 = (done) => {
     });
 };
 
+const studentsRegToTeacher2 = [testStudentRegUnderSecondTeacher, testSuspendStudent];
+
 describe('Register Students under Teacher', () => {
   it(
     'Register students under teacher #1',
     req1(testTeacher, ['customStudent@gmail.com', 'customStudent2@gmail.com', testStudentRegUnderTestTeacher])
   );
-  it('Register students under teacher #2', req1(testTeacher2, [testStudentRegUnderSecondTeacher, testSuspendStudent]));
+  it('Register students under teacher #2', req1(testTeacher2, studentsRegToTeacher2));
   it('Register students under teacher #3', req1(testTeacher3, [notiStudentMentioned1, notiStudentMentioned2]));
+  it(
+    'Register a student under teacher #3 who is also registered to teacher #2',
+    req1(testTeacher3, [studentsRegToTeacher2[0]])
+  );
   it('should fail if no teacher provided', req2);
   it('should fail if no students provided', req3);
   it('should fail if teacher has invalid email format', req4);

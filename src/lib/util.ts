@@ -25,6 +25,8 @@ export const warningMessageHandler = (message: string) => {
   };
 };
 
-export const validEmailRegex = new RegExp(/(\w|\.|\-)+@[^\.^\@]+(\.\w+)+\b/)
+const validIdString = '(\\w|\\.|\\-)+@[^\\.^\\@]+(\\.\\w+)+\\b';
 
-export const validMentionEmailRegex = new RegExp(/@(\w|\.|\-)+@[^\.^\@]+(\.\w+)+\b/g)
+export const validEmailRegex = new RegExp(validIdString);
+
+export const validMentionEmailRegex = new RegExp(`@${validIdString}`, 'g');

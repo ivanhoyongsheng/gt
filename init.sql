@@ -1,3 +1,4 @@
+drop database st_tc_db;
 CREATE DATABASE IF NOT EXISTS st_tc_db;
 USE st_tc_db;
 

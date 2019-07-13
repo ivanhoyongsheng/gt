@@ -6,10 +6,11 @@ import suspend from 'api/suspend';
 import retrievefornotifications from 'api/retrievefornotifications';
 
 const apiRoutes = express.Router();
+const API_PREFIX = '/api';
 
-apiRoutes.post('/register', register);
-apiRoutes.get('/commonstudents', commonstudents);
-apiRoutes.post('/suspend', suspend);
-apiRoutes.post('/retrievefornotifications', retrievefornotifications);
+apiRoutes.post(`${API_PREFIX}/register`, register);
+apiRoutes.get(`${API_PREFIX}/commonstudents`, commonstudents);
+apiRoutes.post(`${API_PREFIX}/suspend`, suspend);
+apiRoutes.post(`${API_PREFIX}/retrievefornotifications`, retrievefornotifications);
 
 export default apiRoutes;
