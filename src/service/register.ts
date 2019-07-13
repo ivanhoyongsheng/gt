@@ -1,10 +1,23 @@
 import sql from './sql';
-import { stripNewLines } from 'lib/util';
+import { stripNewLines, validEmailRegex } from 'lib/util';
 
 class RegisterService {
   /** validates and returns list of students as comma delimited string */
   parseStudents = (students: string[]): string => {
-    return students.map((s, i) => `('${s}')`).toString();
+    return students.map((s) => `('${s}')`).toString();
+  };
+
+  checkEmailValidity = (val: string | string[]) => {
+    if ((val as string[]).forEach) {
+      for (let i = 0; i < val.length; i++) {
+        const email = (val as string[])[i];
+        if (validEmailRegex.test(email) === false) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return validEmailRegex.test(val as string);
   };
 
   insertStudentsIntoTable = async (students: string[]) => {

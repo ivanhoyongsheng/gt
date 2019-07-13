@@ -3,6 +3,8 @@ module.exports = {
   testTeacher: 'testteacher@gmail.com',
   testTeacher2: 'testteacher2@gmail.com',
   testTeacher3: 'testteacher3@gmail.com',
+  invalidEmail1: 'aZ@#$*(@$*7Z@#$*(@$*7sdflaskdjf.com',
+  invalidEmail2: 'asdflaskdjf.com',
   testStudentRegUnderTestTeacher: 'st1@gmail.com',
   testStudentRegUnderSecondTeacher: 'st2@gmail.com',
   testSuspendStudent: 'testSuspendStudent@gmail.com',

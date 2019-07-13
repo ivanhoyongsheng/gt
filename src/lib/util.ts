@@ -24,3 +24,7 @@ export const warningMessageHandler = (message: string) => {
     message: `Warning: ${message}`
   };
 };
+
+export const validEmailRegex = new RegExp(/(\w|\.|\-)+@[^\.^\@]+(\.\w+)+\b/)
+
+export const validMentionEmailRegex = new RegExp(/@(\w|\.|\-)+@[^\.^\@]+(\.\w+)+\b/g)

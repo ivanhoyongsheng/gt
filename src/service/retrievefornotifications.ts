@@ -1,5 +1,6 @@
 import sql from './sql';
 import { RowDataPacket } from 'mysql2';
+import { validMentionEmailRegex } from 'lib/util';
 
 class RetrieveService {
   parseListOfStudents = (students: string[]): string => {
@@ -19,11 +20,10 @@ class RetrieveService {
   };
 
   getListOfStudentsMentioned = (notification: string) => {
-    const regex = new RegExp(/@(\w)+@[^\.]+(\.\w+)+\b/g);
     let m;
     let results: string[] = [];
     do {
-      m = regex.exec(notification);
+      m = validMentionEmailRegex.exec(notification);
       if (m) {
         // remove first '@'
         results.push(m[0].substr(1));

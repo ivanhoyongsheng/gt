@@ -15,9 +15,14 @@ const register = async (req: CustomRequestBody<IBody>, res: Response) => {
     if (!teacher) {
       res.status(400).send(errorMessageHandler('No teacher provided'));
       return;
-    }
-    if (!students) {
+    } else if (!students) {
       res.status(400).send(errorMessageHandler('No students provided'));
+      return;
+    } else if (
+      registerService.checkEmailValidity(teacher) === false ||
+      registerService.checkEmailValidity(students) === false
+    ) {
+      res.status(400).send(errorMessageHandler('Invalid email format'));
       return;
     }
     await registerService.registerStudentsToTeacher(students, teacher);
