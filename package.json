@@ -4,7 +4,7 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
-    "start": "nodemon src/index",
+    "start": "node build",
     "dev": "NODE_ENV=development webpack",
     "post": "NODE_ENV=development nodemon build/index.js",
     "build": "webpack",
