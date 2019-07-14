@@ -9,6 +9,8 @@ interface IBody {
   students: string[];
   teacher: string;
 }
+
+/** registers a list of `students` to a specific `teacher` */
 const register = async (req: CustomRequestBody<IBody>, res: Response) => {
   const { students, teacher } = req.body;
   try {

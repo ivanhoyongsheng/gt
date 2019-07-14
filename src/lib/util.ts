@@ -4,10 +4,6 @@ const response = {
 };
 export default response;
 
-export const stripNewLines = (str: string) => {
-  return str.replace(/\n/g, ' ');
-};
-
 export const errorMessageHandler = (message: string) => {
   return {
     message: `Sorry, an error occured: ${message}`

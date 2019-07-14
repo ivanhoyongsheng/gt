@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import express from 'express';
 import apiRoutes from 'api';
 import bodyParser from 'body-parser';
+
 const app = express();
 
 const main = async () => {
@@ -15,7 +16,6 @@ const main = async () => {
   app.use(apiRoutes);
 
   app.listen(PORT, () => {
-    // console.log(db);
     console.log('server started at http://localhost:' + PORT);
   });
 };

@@ -8,6 +8,11 @@ const suspendService = new SuspendService();
 interface IBody {
   student: string;
 }
+
+/**
+ * Suspend a specific `student`. Will set the `suspended` status of the `student`
+ * to `true` regardless of current status (i.e. does not toggle status)
+ */
 const suspend = async (req: CustomRequestBody<IBody>, res: Response) => {
   try {
     const { student } = req.body;

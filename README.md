@@ -114,7 +114,9 @@ Response body example:
 {
   "recipients":
     [
-      "student_registered_under_teacherken@gmail.com", "studentagnes@gmail.com", "studentmiche@gmail.com"
+      "student_registered_under_teacherken@gmail.com",
+      "studentagnes@gmail.com",
+      "studentmiche@gmail.com"
     ]   
 }
 ```
@@ -140,11 +142,38 @@ call the exposed APIs. As such, there are limitations with the current
 specifications, such as not being able to reset the data because there is no
 API to perform such actions.
 
-# Further improvement
+# Notes
+
+## Further Improvement
+
 * Instantize testing - either connect to the SQL database in the tests
   themselves and execute commands, or expose APIs to reset/set database status
-  outside of production functionality
+  outside of production functionality. Or, spin up a fresh database for each
+  deployment and destroy it after tests pass
+
+* Move tests to beside API files, however the tests currently rely on a
+  specific order and a more verbose test command will be needed eventually.
 
 * Write Swagger schema for API
 
 * Implement middleware for API call logs
+
+* implement precommit hooks to lint files with prettier for better coding style
+  cohesion
+
+## Code
+
+### For this small project I have used the following:
+
+* ExpressJS - simple API endpoint setup
+
+* TypeScript - less errors at compile time with type checking, will have more
+  benefits as the codebase grows and code gets harder to maintain.
+
+* async/await mySQL requests with mysql2 - more readable code, better data
+  consistency
+
+* Heroku - PaaS for deployment with considerably easy setup, quick to get a
+  node app up and running online, provides mySQL database instance as an add on
+  in a few clicks -- configure environment variables and you're good to go.
+  Bonus: it's free for low tier usage

@@ -1,5 +1,5 @@
 import sql from './sql';
-import { stripNewLines, validEmailRegex } from 'lib/util';
+import { validEmailRegex } from 'lib/util';
 
 class RegisterService {
   /** validates and returns list of students as comma delimited string */
@@ -22,10 +22,10 @@ class RegisterService {
 
   insertStudentsIntoTable = async (students: string[]) => {
     const values = this.parseStudents(students);
-    const qs = stripNewLines(`INSERT IGNORE INTO students(email)
+    const qs = `INSERT IGNORE INTO students(email)
     VALUES
     ${values};
-      `);
+      `;
     const res = await sql.query(qs);
     return res;
   };
@@ -39,7 +39,7 @@ class RegisterService {
   };
 
   insertTeacherIntoTable = async (teacher: string) => {
-    const qs = stripNewLines(`INSERT IGNORE INTO teachers(email) VALUES ('${teacher}') `);
+    const qs = `INSERT IGNORE INTO teachers(email) VALUES ('${teacher}') `;
     const res = await sql.query(qs);
     return res;
   };

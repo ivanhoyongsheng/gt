@@ -9,6 +9,8 @@ const commonStudentsService = new CommonStudentsService();
 interface IBody {
   teacher: string | string[];
 }
+
+/** List `students` that are registered to all the `teachers` provided */
 const commonstudents = async (req: CustomRequestQuery<IBody>, res: Response) => {
   try {
     const { teacher } = req.query;
