@@ -1,4 +1,4 @@
-const url = process.env.API_HOST_URL || 'http://localhost:3000';
+const url = process.env.DEPLOYMENT_URL || 'http://localhost:3000';
 
 module.exports = {
   url: `${url}/api`,
