@@ -20,7 +20,7 @@ module.exports = {
   watch: NODE_ENV === 'development',
   externals: [nodeExternals()],
     entry: './index.ts',
-  mode: NODE_ENV,
+  mode: NODE_ENV === 'test' ? 'production' : NODE_ENV,
   target: 'node',
   output: {
     path: path.resolve(__dirname, 'build'),
