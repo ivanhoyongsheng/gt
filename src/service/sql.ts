@@ -1,15 +1,16 @@
 import mysql from 'mysql2/promise';
 
-const DB_NAME = 'st_tc_db';
+const { DBUSER, DBPASSWORD, DBHOST, DBPORT, DBNAME } = process.env;
 
-const { DBUSER, DBPASSWORD } = process.env;
 const options = {
+  host: DBHOST || 'localhost',
+  port: parseInt(DBPORT) || 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
   user: DBUSER || 'root',
   password: DBPASSWORD || 'password',
-  database: DB_NAME
+  database: DBNAME || 'st_tc_db'
 };
 
 const sql = mysql.createPool(options);

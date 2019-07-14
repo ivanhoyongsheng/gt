@@ -1,5 +1,7 @@
+const url = process.env.API_HOST_URL || 'http://localhost:3000';
+
 module.exports = {
-  url: 'http://localhost:3000',
+  url: `${url}/api`,
   testTeacher: 'testteacher@gmail.com',
   testTeacher2: 'testteacher2@gmail.com',
   testTeacher3: 'testteacher3@gmail.com',
