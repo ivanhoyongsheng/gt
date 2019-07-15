@@ -1,4 +1,5 @@
 # Prerequisites:
+developed on the following:
 * node 11.6.0
 * npm 6.5.0
 * mySQL 5.7.26
@@ -7,17 +8,22 @@
   Change mySQL credentials as needed according to your local environment.
   **WARNING: will drop the database `st_tc_db`  when run.**
 
-  **mySQL 8 is not supported.**
+  **please use mySQL5.7, mySQL 8 is not supported.**
 
 ```
 mysql -uroot < init.sql
 ```
 
 # Development
-* Start dev server with env `DBUSER` and `DBPASSWORD` respectively. Will
-  default to `root` and `password` if not provided.
+* Start dev server with desired database configuration using the following
+  environment variables:
+  * DBUSER // default `root`
+  * DBPASSWORD // default `password`
+  * DBHOST // default `localhost`
+  * DBPORT // default `3306`
+  * DBNAME // default `st_tc_db`
 
-
+example:
 ```
 env DBUSER=root DBPASSWORD=password npm run dev
 ```
@@ -92,9 +98,10 @@ Returns `204` if successful, `400` if error encountered.
 ###  `POST /api/retrievefornotifications`
 
 Retrieves a list of eligible students based on request body. Will return
-students that are not suspended, and are either a) under the teacher provided,
-or b) mentioned directly in `notification`. mention RegExp is `@` character
-followed by the valid user ID RegExp. Will not mentioned the following:
+students that are not suspended, and are either a) registered under the teacher
+provided, or b) mentioned directly in `notification`. mention RegExp is `@`
+character followed by the valid user ID RegExp. Will not mentioned the
+following:
 
 * unregistered students
 * mentioned teachers
@@ -129,7 +136,7 @@ of current status.
 # Tests
 
 * Run tests with mocha. This assumes that the target API server is set up and
-  deployed. URL can be configured with the environment variable `API_HOST_URL`,
+  deployed. URL can be configured with the environment variable `DEPLOYMENT_URL`,
   or defaults to `http://localhost:3000`.
 
 
@@ -144,6 +151,11 @@ API to perform such actions.
 
 # Notes
 
+## Heroku Deployment
+Deployed as a Heroku app at https://ivan-gt-api.herokuapp.com. Managed to
+utilize Heroku CI to run test before each deployment whenever a commit is
+detected
+
 ## Further Improvement
 
 * Instantize testing - either connect to the SQL database in the tests
@@ -154,11 +166,11 @@ API to perform such actions.
 * Move tests to beside API files, however the tests currently rely on a
   specific order and a more verbose test command will be needed eventually.
 
-* Write Swagger schema for API
+* Write schema for API (Swagger, etc)
 
 * Implement middleware for API call logs
 
-* implement precommit hooks to lint files with prettier for better coding style
+* implement precommit hooks to lint files with Prettier for better coding style
   cohesion
 
 ## Code
@@ -167,13 +179,14 @@ API to perform such actions.
 
 * ExpressJS - simple API endpoint setup
 
-* TypeScript - less errors at compile time with type checking, will have more
-  benefits as the codebase grows and code gets harder to maintain.
+* TypeScript - shifts errors to compile time instead of runtime with type
+  checking. Not particularly beneficial for a small project like this, but it will
+  have more benefits as the codebase grows and the code gets harder to maintain.
 
 * async/await mySQL requests with mysql2 - more readable code, better data
   consistency
 
 * Heroku - PaaS for deployment with considerably easy setup, quick to get a
-  node app up and running online, provides mySQL database instance as an add on
+  Node app up and running online, provides mySQL database instance as an add on
   in a few clicks -- configure environment variables and you're good to go.
   Bonus: it's free for low tier usage
