@@ -58,4 +58,6 @@ class RegisterService {
     await this.insertStudentTeacherRelationship(students, teacher);
   };
 }
-export default RegisterService;
+const registerService = new RegisterService();
+
+export default registerService;

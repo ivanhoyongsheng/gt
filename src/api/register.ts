@@ -1,9 +1,8 @@
 import { Response } from 'express';
-import RegisterService from 'service/register';
+import registerService from 'service/register';
 import { CustomRequestBody } from 'types';
 import { errorMessageHandler } from 'lib/util';
 
-const registerService = new RegisterService();
 
 interface IBody {
   students: string[];
@@ -17,7 +16,7 @@ const register = async (req: CustomRequestBody<IBody>, res: Response) => {
     if (!teacher) {
       res.status(400).send(errorMessageHandler('No teacher provided'));
       return;
-    } else if (!students) {
+    } else if (!students || students.length === 0) {
       res.status(400).send(errorMessageHandler('No students provided'));
       return;
     } else if (

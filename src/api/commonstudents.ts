@@ -1,10 +1,9 @@
 import { Response } from 'express';
-import CommonStudentsService from 'service/commonstudents';
+import commonStudentsService from 'service/commonstudents';
 import { CustomRequestQuery } from 'types';
 import { errorMessageHandler } from 'lib/util';
 import { RowDataPacket } from 'mysql2';
 
-const commonStudentsService = new CommonStudentsService();
 
 interface IBody {
   teacher: string | string[];

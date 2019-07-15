@@ -89,6 +89,21 @@ const req5 = (done) => {
     });
 };
 
+const req6 = (done) => {
+  chai
+    .request(url)
+    .post(apiUrl)
+    .send({
+        teacher: testTeacher,
+        students: [],
+    })
+    .end((err, res) => {
+      res.should.have.status(400);
+      done();
+    });
+};
+
+
 const studentsRegToTeacher2 = [testStudentRegUnderSecondTeacher, testSuspendStudent];
 
 describe('Register Students under Teacher', () => {
@@ -103,7 +118,8 @@ describe('Register Students under Teacher', () => {
     req1(testTeacher3, [studentsRegToTeacher2[0]])
   );
   it('should fail if no teacher provided', req2);
-  it('should fail if no students provided', req3);
+  it('should fail if no students array provided', req3);
+  it('should fail if no students provided in array', req6);
   it('should fail if teacher has invalid email format', req4);
   it('should fail if any students has invalid email format', req5);
 });

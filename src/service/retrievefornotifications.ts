@@ -37,4 +37,6 @@ class RetrieveService {
     return (res[0] as RowDataPacket[]).map((item) => item.email);
   };
 }
-export default RetrieveService;
+const retrieveService = new RetrieveService();
+
+export default retrieveService;

@@ -22,4 +22,6 @@ class CommonStudentsService {
     return a;
   };
 }
-export default CommonStudentsService;
+const commonStudentsService = new CommonStudentsService();
+
+export default commonStudentsService;

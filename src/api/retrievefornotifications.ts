@@ -1,9 +1,7 @@
 import { Response } from 'express';
-import RetrieveService from 'service/retrievefornotifications';
+import retrieveService from 'service/retrievefornotifications';
 import { CustomRequestBody } from 'types';
 import { errorMessageHandler } from 'lib/util';
-
-const retrieveService = new RetrieveService();
 
 interface IBody {
   notification: string;

@@ -13,4 +13,6 @@ class SuspendService {
     return res;
   };
 }
-export default SuspendService;
+const suspendService = new SuspendService();
+
+export default suspendService;

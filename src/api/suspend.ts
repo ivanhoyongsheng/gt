@@ -1,9 +1,7 @@
 import { Response } from 'express';
-import SuspendService from 'service/suspend';
+import suspendService from 'service/suspend';
 import { CustomRequestBody } from 'types';
 import { errorMessageHandler } from 'lib/util';
-
-const suspendService = new SuspendService();
 
 interface IBody {
   student: string;
