@@ -1,3 +1,6 @@
+## Public Deployment
+Deployed as a Heroku app at https://ivan-gt-api.herokuapp.com. 
+
 # Prerequisites:
 developed on the following:
 * node 11.6.0
@@ -36,102 +39,7 @@ env DBUSER=root DBPASSWORD=password npm run build
 ```
 
 # API Endpoints
-
-### `POST /api/register`
-
-Registers an array of students to a teacher
-
-Request body example: 
-```
-{
-  "teacher": "teacherken@gmail.com"
-  "students":
-    [
-      "studentjon@gmail.com",
-      "studenthon@gmail.com"
-    ]
-}
-```
-
-Current valid user ID (email) format is `(/w|/.|/-)+@[^/.^/@]+(/./w+)+/b`
-
-Returns `204` if successful, `400` if error encountered.
-
-### `GET /api/commonstudents`
-
-Gets a list of students that are registered to all the teachers provided
-
-Request example: `/api/commonstudents?teacher=teacherken%40gmail.com&teacher=teacher2%40gmail.com`
-
-Response body example:
-
-```
-{
-  "students" :
-    [
-      "student_under_both_teachers_in_query_param_1@gmail.com", 
-      "student_under_both_teachers_in_query_param_2@gmail.com", 
-      "student_under_both_teachers_in_query_param_3@gmail.com", 
-    ]
-}
-```
-
-Returns `200` if successful, `400` if error encountered.
-
-###  `POST /api/suspend`
-
-Suspends a student. For simplicity, will always change the student's status to
-suspended regardless of current status. Does not throw error if student is
-already suspended. This API endpoint does not toggle the suspended status.
-
-
-Request body example:
-
-```
-{
-  "student" : "student@gmail.com"
-}
-```
-
-Returns `204` if successful, `400` if error encountered.
-
-###  `POST /api/retrievefornotifications`
-
-Retrieves a list of eligible students based on request body. Will return
-students that are not suspended, and are either a) registered under the teacher
-provided, or b) mentioned directly in `notification`. mention RegExp is `@`
-character followed by the valid user ID RegExp. Will not mentioned the
-following:
-
-* unregistered students
-* mentioned teachers
-
-Request body example:
-
-```
-{
-  "teacher":  "teacherken@gmail.com",
-  "notification": "Hello students! notmentioned@gmail.com @studentagnes@gmail.com @studentmiche@gmail.com"
-}
-```
-
-Response body example:
-
-```
-{
-  "recipients":
-    [
-      "student_registered_under_teacherken@gmail.com",
-      "studentagnes@gmail.com",
-      "studentmiche@gmail.com"
-    ]   
-}
-```
-
-Returns `200` if successful, `400` if error encountered.
-
-For simplicity, will always change the student's status to suspended regardless
-of current status.
+see [API.md](API.md)
 
 # Tests
 
@@ -150,11 +58,6 @@ specifications, such as not being able to reset the data because there is no
 API to perform such actions.
 
 # Notes
-
-## Heroku Deployment
-Deployed as a Heroku app at https://ivan-gt-api.herokuapp.com. Managed to
-utilize Heroku CI to run test before each deployment whenever a commit is
-detected
 
 ## Further Improvement
 
@@ -180,8 +83,9 @@ detected
 * ExpressJS - simple API endpoint setup
 
 * TypeScript - shifts errors to compile time instead of runtime with type
-  checking. Not particularly beneficial for a small project like this, but it will
-  have more benefits as the codebase grows and the code gets harder to maintain.
+  checking. Not particularly beneficial for a small project like this, but it
+  will have more benefits as the codebase grows and the code gets harder to
+  maintain.
 
 * async/await mySQL requests with mysql2 - more readable code, better data
   consistency
@@ -189,4 +93,6 @@ detected
 * Heroku - PaaS for deployment with considerably easy setup, quick to get a
   Node app up and running online, provides mySQL database instance as an add on
   in a few clicks -- configure environment variables and you're good to go.
+  Managed to utilize Heroku CI to run test before each deployment whenever a
+  commit is detected.
   Bonus: it's free for low tier usage
