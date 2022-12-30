@@ -22,7 +22,7 @@
     "@types/node": "^12.6.2",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "mocha": "^6.1.4",
+    "mocha": "^10.2.0",
     "nodemon": "^1.19.1",
     "request": "^2.88.0",
     "ts-loader": "^6.0.4",
